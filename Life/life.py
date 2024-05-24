@@ -30,25 +30,19 @@ def count_living_cells(board):
     return sum(row.count('█') for row in board)
 
 def game_of_life(rows, cols, generations=10):
-    # Initialize the board with random cells
     board = [['█' if random.random() < 0.5 else ' ' for _ in range(cols)] for _ in range(rows)]
-    
-    # Count the living cells at the start
     living_cells_start = count_living_cells(board)
     
     for _ in range(generations):
         print_board(board)
-        time.sleep(0.1)  # pause for 1 second
+        time.sleep(0.1)
         board = next_generation(board)
-    
-    # Count the living cells at the end
+
     living_cells_end = count_living_cells(board)
-    
-    # Print the number of living cells at the start and end
+
     print(f"Living cells at the start: {living_cells_start}")
     print(f"Living cells at the end: {living_cells_end}")
 
-# Run the game with a 10x10 board for 5 generations
 rows, cols = os.get_terminal_size()
 print("Rows: ", rows)
 print("Columns: ", cols)
